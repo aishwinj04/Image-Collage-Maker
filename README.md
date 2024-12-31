@@ -1,6 +1,6 @@
 ### Image Collage Maker
 
-This Python script creates a collage of images by arranging them in a grid with margins. It reads images from a directory and arranges them into a grid. The final collage is saved as a new image file.
+This Python program creates a collage of images by arranging them in a grid with margins. It reads images from a directory and arranges them into a grid. The final collage is saved as a new image file.
 
 ### Features:
 - Organizes images in a grid based on user input.
