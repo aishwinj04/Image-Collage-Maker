@@ -17,10 +17,15 @@ for filename in images:
     if filename != '.DS_Store' :
         valid_images.append(filename)
 print(valid_images)
-image_obj = [cv2.imread(f'images/{filename}') for filename in valid_images]
 
 # all images to be same size
 shape = cv2.imread('images/img1.JPG').shape
+image_obj = []
+for filename in valid_images:
+    image = cv2.imread(f'images/{filename}')
+    # resize function wants in form (width, height)
+    resized_image = cv2.resize(image, (shape[1], shape[0]))
+    image_obj.append(resized_image)
 
 
 # (3648, 5472, 3)
@@ -45,7 +50,6 @@ background.fill(255) # change to white
 
 positions = [(x, y) for x in range(columns) for y in range(rows)]
 print(positions)
-
 
 # each image gets a position in the list
 for (pos_x, pos_y), image in zip(positions, image_obj):
