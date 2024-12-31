@@ -1,5 +1,6 @@
 import cv2
 import os
+import numpy as np
 
 # rows and columns for collage
 columns = 3
@@ -13,8 +14,22 @@ vertical_margin = 20
 images = os.listdir('images')
 
 # all images to be same size
-img1 = cv2.imread('images/img1.JPG')
+shape = cv2.imread('images/img1.JPG').shape
 
-# .shape uses order of height then width 
-width = img1.shape[1] 
-height = img1.shape[0]
+# background using numpy
+
+# shape[0] * rows accounts for for the vertical size of only the images
+# 2 rows -> 3 horizontal margins
+# 3 rows -> 4 horizontal margins 
+
+# shape[1] * columns accounts for the horizontal display of only the images
+# 3 rows -> 4 vertical margins
+# 4 rows -> 5 margins 
+background = np.zeros((shape[0]  * rows + horizontal_margin * (rows + 1), 
+                       shape[1] * columns + vertical_margin * (columns + 1), 
+                       shape[2]), 
+                       np.uint8)
+
+background.fill(255)
+
+cv2.imwrite('grid.JPG', background)
