@@ -39,3 +39,19 @@ background = np.zeros((shape[0]  * rows + horizontal_margin * (rows + 1),
                        np.uint8)
 
 background.fill(255) # change to white
+
+
+# add images ontop of the background
+
+positions = [(x, y) for x in range(columns) for y in range(rows)]
+print(positions)
+
+
+# each image gets a position in the list
+for (pos_x, pos_y), image in zip(positions, image_obj):
+    x = pos_x * (shape[1] + vertical_margin) + vertical_margin
+    y = pos_y * (shape[0] + horizontal_margin) + horizontal_margin
+    background[y:y+shape[0], x:x+shape[1]] = image
+
+
+cv2.imwrite('grid.JPG', background)
